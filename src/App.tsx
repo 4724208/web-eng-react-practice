@@ -18,6 +18,16 @@ export default function App() {
     setTodos((current) => [...current, newTodo]);
     setTitle("");
   }
+
+  
+  const toggleTodo = (id: number) => {
+    setTodos((current) => current.map((todo) =>
+      todo.id === id
+        ? { ...todo, completed: !todo.completed }
+        : todo
+    ));
+  };
+
   return (
     <main>
       <h1>React TODO</h1>
@@ -33,7 +43,7 @@ export default function App() {
         <button type="submit">追加</button>
         <p>入力中:{title}</p>
       </form>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggle={toggleTodo}/>
     </main>
     );
   }
