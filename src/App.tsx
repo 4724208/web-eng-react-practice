@@ -10,9 +10,11 @@ export default function App() {
 
   function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
+    const trimmed = title.trim();
+    if (trimmed === "") return;
     const newTodo: Todo = {
       id: Date.now(),
-      title,
+      title: trimmed,
       completed: false,
     };
     setTodos((current) => [...current, newTodo]);
